@@ -36,7 +36,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          tags: tinegagideon/httpenv:${{ github.ref_name }}-${{ github.sha }}
+          load: true
+          tags: ${{ github.run_id }}
           cache-from: type=gha
           cache-to: type=gha, mode=max
           platforms: linux/amd64
@@ -44,7 +45,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: tinegagideon/httpenv:${{ github.ref_name }}-${{ github.sha }}
+          image-ref: ${{ github.run_id }}
           format: "table"
           exit-code: 0 # Non blocking
 
