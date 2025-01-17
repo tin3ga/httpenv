@@ -42,7 +42,7 @@ jobs:
           cache-to: type=gha, mode=max
           platforms: linux/amd64
 
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner - Non Blocking
         uses: aquasecurity/trivy-action@0.28.0
         with:
           image-ref: ${{ github.run_id }}
